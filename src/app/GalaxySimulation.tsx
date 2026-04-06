@@ -121,19 +121,19 @@ export default function GalaxySimulation() {
 
       timeRef.current += 1
 
-      // Draw galactic core glow
+      // Draw galactic core glow — indigo-shifted
       const coreGrad = ctx!.createRadialGradient(cx, cy, 0, cx, cy, scale * 0.15)
-      coreGrad.addColorStop(0, 'rgba(255, 220, 160, 0.12)')
-      coreGrad.addColorStop(0.2, 'rgba(255, 200, 130, 0.06)')
-      coreGrad.addColorStop(0.5, 'rgba(200, 170, 255, 0.02)')
+      coreGrad.addColorStop(0, 'rgba(129, 140, 248, 0.1)')
+      coreGrad.addColorStop(0.2, 'rgba(99, 102, 241, 0.05)')
+      coreGrad.addColorStop(0.5, 'rgba(67, 56, 202, 0.02)')
       coreGrad.addColorStop(1, 'transparent')
       ctx!.fillStyle = coreGrad
       ctx!.fillRect(0, 0, w, h)
 
       // Secondary glow
       const coreGrad2 = ctx!.createRadialGradient(cx, cy, 0, cx, cy, scale * 0.06)
-      coreGrad2.addColorStop(0, 'rgba(255, 230, 180, 0.2)')
-      coreGrad2.addColorStop(0.5, 'rgba(255, 210, 150, 0.05)')
+      coreGrad2.addColorStop(0, 'rgba(165, 180, 255, 0.15)')
+      coreGrad2.addColorStop(0.5, 'rgba(129, 140, 248, 0.04)')
       coreGrad2.addColorStop(1, 'transparent')
       ctx!.fillStyle = coreGrad2
       ctx!.fillRect(0, 0, w, h)

@@ -2,8 +2,20 @@
 
 import { useEffect } from 'react'
 import GalaxySimulation from './GalaxySimulation'
+import PortalVortex from './PortalVortex'
+import ShaderText from './ShaderText'
 
 const simulations = [
+  {
+    id: 'hub',
+    label: 'Command Center',
+    title: 'elliottelford.com',
+    desc: 'The nexus. The origin point. Where every simulation converges and every path begins. You are here.',
+    url: 'elliottelford.com',
+    href: 'https://elliottelford.com',
+    icon: '◉',
+    className: 'sim-card--hub',
+  },
   {
     id: 'physics',
     label: 'Simulation 01',
@@ -71,22 +83,11 @@ export default function Home() {
 
       {/* ─── Hero ─── */}
       <section className="hero">
-        <div className="hero-sigil">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" stroke="rgba(201,169,110,0.3)" strokeWidth="0.5" />
-            <circle cx="50" cy="50" r="30" stroke="rgba(201,169,110,0.2)" strokeWidth="0.5" />
-            <circle cx="50" cy="50" r="15" stroke="rgba(201,169,110,0.4)" strokeWidth="0.5" />
-            <circle cx="50" cy="50" r="3" fill="rgba(201,169,110,0.6)" />
-            <line x1="50" y1="5" x2="50" y2="95" stroke="rgba(201,169,110,0.1)" strokeWidth="0.5" />
-            <line x1="5" y1="50" x2="95" y2="50" stroke="rgba(201,169,110,0.1)" strokeWidth="0.5" />
-            <line x1="17" y1="17" x2="83" y2="83" stroke="rgba(201,169,110,0.08)" strokeWidth="0.5" />
-            <line x1="83" y1="17" x2="17" y2="83" stroke="rgba(201,169,110,0.08)" strokeWidth="0.5" />
-          </svg>
-        </div>
+        <PortalVortex />
 
-        <h1 className="hero-tagline">
-          Where Do <em>You</em> Belong?
-        </h1>
+        <div className="hero-tagline-wrap">
+          <ShaderText text="Where Do You Belong?" highlightWord="You" />
+        </div>
 
         <p className="hero-sub">elliottelford.com</p>
 
@@ -134,7 +135,7 @@ export default function Home() {
             <a
               key={sim.id}
               href={sim.href}
-              target="_blank"
+              target={sim.id === 'hub' ? '_self' : '_blank'}
               rel="noopener noreferrer"
               className={`sim-card ${sim.className} reveal`}
               style={{ transitionDelay: `${i * 0.1}s` }}
