@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import GalaxySimulation from './GalaxySimulation'
 
 const simulations = [
   {
@@ -65,9 +66,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Animated background layers */}
-      <div className="starfield" />
-      <div className="atmosphere" />
+      {/* Galaxy simulation background */}
+      <GalaxySimulation />
 
       {/* ─── Hero ─── */}
       <section className="hero">
