@@ -1,0 +1,432 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #0a0a0f;
+  --color-bg-deep: #050508;
+  --color-text: #e8e6e3;
+  --color-text-muted: #8a8890;
+  --color-accent: #c9a96e;
+  --color-accent-glow: #d4b87a;
+  --color-card-bg: rgba(15, 15, 25, 0.85);
+  --color-card-border: rgba(201, 169, 110, 0.15);
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Raleway', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Animated starfield background ─── */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.starfield::before,
+.starfield::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 85%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 45%, rgba(201,169,110,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1.3px 1.3px at 15% 55%, rgba(201,169,110,0.3) 0%, transparent 100%);
+  background-size: 300px 300px;
+  animation: drift 120s linear infinite;
+}
+
+.starfield::after {
+  background-size: 500px 500px;
+  opacity: 0.5;
+  animation-duration: 200s;
+  animation-direction: reverse;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(50%); }
+}
+
+/* ─── Fog / atmosphere overlay ─── */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(80,60,120,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(60,80,120,0.05) 0%, transparent 50%);
+}
+
+/* ─── Hero section ─── */
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-sigil {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 2s ease-out 0.3s forwards;
+}
+
+.hero-sigil svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  color: var(--color-text);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInUp 2s ease-out 0.8s forwards;
+  text-shadow: 0 0 60px rgba(201,169,110,0.15);
+}
+
+.hero-tagline em {
+  font-style: normal;
+  color: var(--color-accent);
+  text-shadow: 0 0 40px rgba(201,169,110,0.3);
+}
+
+.hero-sub {
+  margin-top: 1.5rem;
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0;
+  animation: fadeIn 2s ease-out 1.6s forwards;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 2s ease-out 2.5s forwards;
+}
+
+.scroll-hint span {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ─── Divider ─── */
+.section-divider {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.divider-line {
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+  opacity: 0.3;
+}
+
+.divider-diamond {
+  width: 8px;
+  height: 8px;
+  margin: 0 1.5rem;
+  background: var(--color-accent);
+  transform: rotate(45deg);
+  opacity: 0.5;
+}
+
+/* ─── Architect section ─── */
+.architect {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+  text-align: center;
+}
+
+.architect-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.architect-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.architect-desc {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* ─── Simulations grid ─── */
+.simulations {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 2rem 8rem;
+}
+
+.simulations-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.simulations-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.simulations-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.sim-card {
+  position: relative;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+.sim-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--card-glow, rgba(201,169,110,0.05)) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sim-card:hover {
+  border-color: rgba(201,169,110,0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.sim-card:hover::before {
+  opacity: 1;
+}
+
+.sim-icon {
+  position: relative;
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  filter: grayscale(0.3);
+}
+
+.sim-card-label {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+.sim-card-title {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.sim-card-desc {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.sim-card-url {
+  position: relative;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.sim-card:hover .sim-card-url {
+  opacity: 1;
+}
+
+/* card-specific glow colors */
+.sim-card--physics { --card-glow: rgba(100,140,255,0.08); }
+.sim-card--cosmos { --card-glow: rgba(120,80,200,0.08); }
+.sim-card--landscape { --card-glow: rgba(80,160,100,0.08); }
+.sim-card--projects { --card-glow: rgba(201,169,110,0.08); }
+
+/* ─── Footer ─── */
+.footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid rgba(201,169,110,0.08);
+}
+
+.footer-text {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+}
+
+.footer-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+  opacity: 0.7;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .sim-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .architect {
+    padding: 3rem 1.5rem 4rem;
+  }
+}
