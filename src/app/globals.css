@@ -7,16 +7,16 @@
 }
 
 :root {
-  --color-bg: #0a0a0f;
-  --color-bg-deep: #050508;
+  --color-bg: #06060b;
+  --color-bg-deep: #030306;
   --color-text: #e8e6e3;
   --color-text-muted: #8a8890;
   --color-accent: #c9a96e;
   --color-accent-glow: #d4b87a;
-  --color-card-bg: rgba(15, 15, 25, 0.85);
-  --color-card-border: rgba(201, 169, 110, 0.15);
-  --font-display: 'Cinzel', serif;
-  --font-body: 'Raleway', sans-serif;
+  --color-card-bg: rgba(12, 12, 22, 0.88);
+  --color-card-border: rgba(201, 169, 110, 0.12);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
 }
 
 html {
@@ -29,59 +29,6 @@ body {
   color: var(--color-text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-}
-
-/* ─── Animated starfield background ─── */
-.starfield {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.starfield::before,
-.starfield::after {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1.2px 1.2px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 85%, rgba(255,255,255,0.45) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 35% 45%, rgba(201,169,110,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1.3px 1.3px at 15% 55%, rgba(201,169,110,0.3) 0%, transparent 100%);
-  background-size: 300px 300px;
-  animation: drift 120s linear infinite;
-}
-
-.starfield::after {
-  background-size: 500px 500px;
-  opacity: 0.5;
-  animation-duration: 200s;
-  animation-direction: reverse;
-}
-
-@keyframes drift {
-  from { transform: translateY(0); }
-  to { transform: translateY(50%); }
-}
-
-/* ─── Fog / atmosphere overlay ─── */
-.atmosphere {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.03) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(80,60,120,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 60%, rgba(60,80,120,0.05) 0%, transparent 50%);
 }
 
 /* ─── Hero section ─── */
@@ -98,11 +45,11 @@ body {
 }
 
 .hero-sigil {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 2rem;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 2.5rem;
   opacity: 0;
-  animation: fadeIn 2s ease-out 0.3s forwards;
+  animation: fadeIn 2.5s ease-out 0.3s forwards;
 }
 
 .hero-sigil svg {
@@ -112,28 +59,27 @@ body {
 
 .hero-tagline {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.1;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
   color: var(--color-text);
-  text-transform: uppercase;
   opacity: 0;
   animation: fadeInUp 2s ease-out 0.8s forwards;
-  text-shadow: 0 0 60px rgba(201,169,110,0.15);
+  text-shadow: 0 0 80px rgba(201,169,110,0.12);
 }
 
 .hero-tagline em {
-  font-style: normal;
+  font-style: italic;
   color: var(--color-accent);
-  text-shadow: 0 0 40px rgba(201,169,110,0.3);
+  text-shadow: 0 0 50px rgba(201,169,110,0.25);
 }
 
 .hero-sub {
-  margin-top: 1.5rem;
-  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  margin-top: 1.8rem;
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
   font-weight: 300;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   opacity: 0;
@@ -154,17 +100,18 @@ body {
 }
 
 .scroll-hint span {
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  font-weight: 400;
 }
 
 .scroll-line {
   width: 1px;
-  height: 40px;
+  height: 45px;
   background: linear-gradient(to bottom, var(--color-accent), transparent);
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
 /* ─── Divider ─── */
@@ -182,16 +129,16 @@ body {
   max-width: 200px;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--color-accent), transparent);
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 .divider-diamond {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   margin: 0 1.5rem;
   background: var(--color-accent);
   transform: rotate(45deg);
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 /* ─── Architect section ─── */
@@ -206,19 +153,20 @@ body {
 
 .architect-label {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 1.5rem;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .architect-name {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
   color: var(--color-text);
 }
@@ -226,7 +174,7 @@ body {
 .architect-desc {
   font-size: 1.05rem;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--color-text-muted);
   max-width: 550px;
   margin: 0 auto;
@@ -248,19 +196,20 @@ body {
 
 .simulations-label {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 1rem;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .simulations-title {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .sim-grid {
@@ -273,7 +222,7 @@ body {
   position: relative;
   background: var(--color-card-bg);
   border: 1px solid var(--color-card-border);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 2.5rem 2rem;
   text-decoration: none;
   color: var(--color-text);
@@ -281,7 +230,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 .sim-card::before {
@@ -294,9 +243,9 @@ body {
 }
 
 .sim-card:hover {
-  border-color: rgba(201,169,110,0.35);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-color: rgba(201,169,110,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.5);
 }
 
 .sim-card:hover::before {
@@ -305,34 +254,34 @@ body {
 
 .sim-icon {
   position: relative;
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 1.25rem;
-  filter: grayscale(0.3);
 }
 
 .sim-card-label {
   position: relative;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 0.65rem;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 0.5rem;
-  opacity: 0.6;
+  opacity: 0.5;
+  font-weight: 400;
 }
 
 .sim-card-title {
   position: relative;
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 0.75rem;
 }
 
 .sim-card-desc {
   position: relative;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 300;
   line-height: 1.7;
   color: var(--color-text-muted);
@@ -342,11 +291,12 @@ body {
 .sim-card-url {
   position: relative;
   margin-top: 1.5rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   color: var(--color-accent);
-  opacity: 0.5;
+  opacity: 0.4;
   transition: opacity 0.3s ease;
+  font-weight: 400;
 }
 
 .sim-card:hover .sim-card-url {
@@ -365,15 +315,15 @@ body {
   z-index: 2;
   text-align: center;
   padding: 3rem 2rem;
-  border-top: 1px solid rgba(201,169,110,0.08);
+  border-top: 1px solid rgba(201,169,110,0.06);
 }
 
 .footer-text {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 .footer-link {
